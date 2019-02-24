@@ -1,0 +1,26 @@
+{
+  "name": "stat_bot",
+  "version": "1.0.0",
+  "main": "src/index",
+  "scripts": {
+    "start": "nodemon --experimental-modules -L src/index",
+    "first": "npm i && npm run start",
+    "test": "mocha --require babel-core/register \"test/**/*.spec.js\""
+  },
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.1",
+    "axios": "^0.18.0",
+    "bugsnag": "^2.4.3",
+    "chai": "^4.2.0",
+    "express": "^4.16.3",
+    "json-to-graphql-query": "^1.5.0",
+    "mocha": "^5.2.0",
+    "moment-timezone": "^0.5.21",
+    "nodemon": "^1.17.5",
+    "ramda": "^0.25.0",
+    "ramda-adjunct": "^2.9.0",
+    "telebot": "^1.2.6",
+    "uuid": "^3.3.0"
+  }
+}
