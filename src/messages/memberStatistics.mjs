@@ -1,14 +1,7 @@
-import R from 'ramda';
-
-const generateUserLink = ({ username, id }) => `[${username}](tg://user?id=${id})`;
-const fullName = data => {
-  const name = R.propOr('', R.__, data);
-  const username = R.trim(`${name('first_name')} ${name('last_name')}`);
-  return generateUserLink({...data, username});
-};
+import { getUserLink } from '../helpers/getFullName';
 
 export const memberStatisticsMessage = (msg, data) => `
-📊 ${fullName(msg.from)}
+📊 ${getUserLink(msg.from)}
 
 📜 Text: ${data.text}
 🎤 Voice: ${data.voice}
