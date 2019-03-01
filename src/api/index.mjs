@@ -34,7 +34,10 @@ const API = createApi(
     httpStrategy: axiosStrategy,
     defaultOptions: {
       url: graphql.url,
-      method: graphql.method
+      method: graphql.method,
+      headers: {
+        authorization: graphql.token,
+      }
     }
   },
   { chat, user, message, sticker }
