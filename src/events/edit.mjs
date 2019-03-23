@@ -29,5 +29,5 @@ export const edit = () => async msg => {
 
   const statsData = getStatisticsData(msgData, updated);
 
-  await API.chat.statistics.updateDaily(statsData);
+  await API.chat.statistics.updateDaily(statsData, R.propOr(null, 'edit_date', msg));
 };

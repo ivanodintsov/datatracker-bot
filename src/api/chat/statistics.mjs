@@ -1,12 +1,13 @@
 export default http => ({
-  async updateDaily(input) {
+  async updateDaily(input, edit_date) {
     const { data: { data: { dailyChatStatistics } } } = await http({
       data: {
-        query: `mutation($input: ChatStatisticsInput!) {
-          dailyChatStatistics(input: $input)
+        query: `mutation($input: ChatStatisticsInput!, $edit_date: Date) {
+          dailyChatStatistics(input: $input, edit_date: $edit_date)
         }`,
         variables: {
-          input
+          input,
+          edit_date,
         }
       }
     });
