@@ -1,4 +1,5 @@
 import R from 'ramda';
+import bugsnag from '../services/bugsnag';
 import messageQueue from './messagesQueue';
 import TYPES from './types';
 import bot from '../services/bot';
@@ -62,7 +63,29 @@ messageQueue.process(5, async  function (job) {
     return Promise.resolve({ status: 'NO_HANDLER' });
   }
 
-  await handler(bot)(job.data.msg);
+  try {
+    await handler(bot)(job.data.msg);
+  } catch (error) {
+    const chatId = R.path([ 'chat', 'id' ], job.data.msg);
+    const fromId = R.path([ 'from', 'id' ], job.data.msg);
+
+    bugsnag.notify(error, {
+      event: {
+        name: job.data.type,
+        error
+      },
+      msg: {
+        chatId,
+        fromId
+      },
+      user: {
+        id: fromId,
+        chat: chatId
+      }
+    });
+
+    throw error;
+  }
 
   return Promise.resolve({ status: 'SUCCESS' });
 });
