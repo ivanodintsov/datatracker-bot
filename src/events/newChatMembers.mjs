@@ -3,6 +3,8 @@ import { findMyBot } from '../helpers/findBot';
 import API from '../api';
 import getMessageData from '../helpers/getMessageData';
 import bugsnag from '../services/bugsnag';
+import messageQueue from '../jobs/messagesQueue';
+import TYPES from '../jobs/types';
 
 const createUser = (bot, chat) => async user => {
   try {
@@ -46,4 +48,11 @@ export const newChatMembers = (bot) => async msg => {
   }
 
   R.forEach(createChatUser, msg.new_chat_members);
+};
+
+export const addToQueue = () => (msg) => {
+  messageQueue.add({
+    type: TYPES.NEW_CHAT_MEMBER,
+    msg,
+  });
 };

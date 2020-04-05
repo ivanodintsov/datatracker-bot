@@ -1,0 +1,28 @@
+const TYPES = {
+  TEXT: 'text',
+  FORWARD: 'forward',
+  AUDIO: 'audio',
+  VOICE: 'voice',
+  DOCUMENT: 'document',
+  PHOTO: 'photo',
+  STICKER: 'sticker',
+  VIDEO: 'video',
+  VIDEONOTE: 'videoNote',
+  CONTACT: 'contact',
+  LOCATION: 'location',
+  VENUE: 'venue',
+  GAME: 'game',
+  INVOICE: 'invoice',
+  NEW_CHAT_MEMBER: 'newChatMembers',
+  GROUP_CHAT_CREATED: 'groupChatCreated',
+  CHANNEL_CHAT_CREATED: 'channelChatCreated',
+  SUPERGROUP_CHAT_CREATED: 'supergroupChatCreated',
+  MIGRATE_TO_CHAT: 'migrateToChat',
+  EDIT: 'edit',
+  NEW_CHAT_TITLE: 'newChatTitle',
+  NEW_CHAT_PHOTO: 'newChatPhoto',
+  PINNED_MESSAGE: 'pinnedMessage',
+  LEFT_CHAT_MEMBER: 'leftChatMember',
+};
+
+export default TYPES;

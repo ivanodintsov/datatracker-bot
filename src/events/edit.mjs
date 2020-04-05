@@ -3,6 +3,8 @@ import getMessageData from '../helpers/getMessageData';
 import API from '../api';
 import getMessageType from '../helpers/getMessageType';
 import getStatisticsData from '../helpers/getStatisticsData';
+import messageQueue from '../jobs/messagesQueue';
+import TYPES from '../jobs/types';
 
 const create = async msg => {
   const messageType = getMessageType(msg);
@@ -30,4 +32,11 @@ export const edit = () => async msg => {
   const statsData = getStatisticsData(msgData, updated);
 
   await API.chat.statistics.updateDaily(statsData, R.propOr(null, 'edit_date', msg));
+};
+
+export const addToQueue = () => (msg) => {
+  messageQueue.add({
+    type: TYPES.EDIT,
+    msg,
+  });
 };

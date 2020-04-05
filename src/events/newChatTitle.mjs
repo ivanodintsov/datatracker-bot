@@ -1,6 +1,8 @@
 import API from '../api'
 import getMessageData from '../helpers/getMessageData'
 // import getStatisticsData from '../helpers/getStatisticsData'
+import messageQueue from '../jobs/messagesQueue';
+import TYPES from '../jobs/types';
 
 export const newChatTitle = bot => async msg => {
   const msgData = getMessageData(msg)
@@ -13,3 +15,10 @@ export const newChatTitle = bot => async msg => {
     // API.chat.statistics.updateDaily(statsData)
   ])
 }
+
+export const addToQueue = () => (msg) => {
+  messageQueue.add({
+    type: TYPES.NEW_CHAT_TITLE,
+    msg,
+  });
+};

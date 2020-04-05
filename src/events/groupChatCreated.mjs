@@ -1,6 +1,8 @@
 import API from '../api'
 import getMessageData from '../helpers/getMessageData'
 // import getStatisticsData from '../helpers/getStatisticsData'
+import messageQueue from '../jobs/messagesQueue';
+import TYPES from '../jobs/types';
 
 export const groupChatCreated = bot =>
   async msg => {
@@ -15,3 +17,10 @@ export const groupChatCreated = bot =>
       // API.chat.statistics.updateDaily(statsData)
     ])
   }
+
+export const addToQueue = () => (msg) => {
+  messageQueue.add({
+    type: TYPES.GROUP_CHAT_CREATED,
+    msg,
+  });
+};
