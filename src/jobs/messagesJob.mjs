@@ -55,7 +55,7 @@ const HANDLERS = {
   [TYPES.LEFT_CHAT_MEMBER]: leftChatMember,
 };
 
-messageQueue.process(async  function (job) {
+messageQueue.process(5, async  function (job) {
   const handler = R.prop(job.data.type, HANDLERS);
 
   if (!handler) {
