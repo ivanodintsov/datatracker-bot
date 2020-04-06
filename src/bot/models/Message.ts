@@ -13,6 +13,7 @@ import Contact from './Contact';
 import Location from './Location';
 import Venue from './Venue';
 import Invoice from './Invoice';
+import VideoNote from './VideoNote';
 
 @Exclude()
 export class Message {
@@ -107,7 +108,9 @@ export class Message {
   @Type(() => Voice)
   voice: Voice;
 
-  // video_note: VideoNoteInput
+  @Expose()
+  @Type(() => VideoNote)
+  video_note: VideoNote;
 
   @Expose()
   @Type(() => String)

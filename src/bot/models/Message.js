@@ -24,6 +24,7 @@ var Contact_1 = require("./Contact");
 var Location_1 = require("./Location");
 var Venue_1 = require("./Venue");
 var Invoice_1 = require("./Invoice");
+var VideoNote_1 = require("./VideoNote");
 var Message = /** @class */ (function () {
     function Message() {
     }
@@ -141,6 +142,11 @@ var Message = /** @class */ (function () {
         class_transformer_1.Type(function () { return Voice_1.default; }),
         __metadata("design:type", Voice_1.default)
     ], Message.prototype, "voice", void 0);
+    __decorate([
+        class_transformer_1.Expose(),
+        class_transformer_1.Type(function () { return VideoNote_1.default; }),
+        __metadata("design:type", VideoNote_1.default)
+    ], Message.prototype, "video_note", void 0);
     __decorate([
         class_transformer_1.Expose(),
         class_transformer_1.Type(function () { return String; }),
