@@ -15,7 +15,6 @@ bot.mod('message', (data) => {
   const message = getMessageData(data.message);
   data.message.inputMessageData = Transformer.plainToClass(Message, message);
 
-  console.log(data.message.inputMessageData);
   return data;
 });
 
