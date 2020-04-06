@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nodemon --experimental-modules -L src/index",
     "first": "npm i && npm run start",
-    "test": "mocha --require babel-core/register \"test/**/*.spec.js\""
+    "test": "mocha --require babel-core/register \"test/**/*.spec.js\"",
+    "build": "tsc --p ./tsconfig.json",
+    "build-watch": "tsc --p ./tsconfig.json --w"
   },
   "license": "MIT",
   "dependencies": {
@@ -17,6 +19,7 @@
     "bugsnag": "^2.4.3",
     "bull": "^3.13.0",
     "chai": "^4.2.0",
+    "class-transformer": "^0.2.3",
     "express": "^4.16.3",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
@@ -27,7 +30,11 @@
     "nodemon": "^1.17.5",
     "ramda": "^0.25.0",
     "ramda-adjunct": "^2.9.0",
+    "reflect-metadata": "^0.1.13",
     "telebot": "^1.2.6",
     "uuid": "^3.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
   }
 }
