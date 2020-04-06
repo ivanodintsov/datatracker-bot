@@ -7,6 +7,7 @@ import * as chat from './chat';
 import * as user from './user';
 import * as message from './message';
 import * as sticker from './sticker';
+import graphqlStrategy from './graphqlStrategy.mjs';
 
 class ResponseError extends Error {
   constructor(errors, ...args) {
@@ -31,7 +32,7 @@ const axiosStrategy = defaultOptions => async options => {
 
 const API = createApi(
   {
-    httpStrategy: axiosStrategy,
+    httpStrategy: graphqlStrategy,
     defaultOptions: {
       url: graphql.url,
       method: graphql.method,
