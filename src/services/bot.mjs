@@ -1,4 +1,6 @@
 import TeleBot from 'telebot';
+import Transformer from 'class-transformer';
+import { Message } from '../bot/models';
 import { botConfig } from '../config';
 import getMessageData from '../helpers/getMessageData';
 import * as events from '../events';
@@ -10,7 +12,10 @@ import { initEventList } from '../helpers/initEvent';
 const bot = new TeleBot(botConfig);
 
 bot.mod('message', (data) => {
-  data.message.inputMessageData = getMessageData(data.message);
+  const message = getMessageData(data.message);
+  data.message.inputMessageData = Transformer.plainToClass(Message, message);
+
+  console.log(data.message.inputMessageData);
   return data;
 });
 
