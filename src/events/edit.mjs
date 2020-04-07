@@ -16,7 +16,7 @@ const create = async msg => {
 };
 
 export const edit = () => async msg => {
-  const msgData = getMessageData(msg);
+  const msgData = msg.inputMessageData;
   const updateData = R.omit([ 'from' ], msgData);
 
   const updated = await API.message.update(updateData);
