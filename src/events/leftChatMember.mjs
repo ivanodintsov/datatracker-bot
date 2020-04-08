@@ -4,7 +4,7 @@ import messageQueue from '../jobs/messagesQueue';
 import TYPES from '../jobs/types';
 
 export const leftChatMember = () => async msg => {
-  const msgData = getMessageData(msg);
+  const msgData = msg.inputMessageData;
   await API.message.create(msgData);
 
   // await API.chat.statistics.updateDaily({
