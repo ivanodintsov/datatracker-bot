@@ -39,9 +39,9 @@ export class Chat {
   @Type(() => String)
   invite_link: string;
 
-  @Expose()
-  @Type(() => Message)
-  pinned_message: Message;
+  // @Expose()
+  // @Type(() => Message)
+  // pinned_message: Message;
 
   @Expose()
   @Type(() => String)

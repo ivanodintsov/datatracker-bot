@@ -1,14 +1,21 @@
 import API from '../api';
 import messageQueue from '../jobs/messagesQueue';
 import TYPES from '../jobs/types';
+import Transformer from 'class-transformer';
+import { Chat, User } from '../bot/models';
 
 export const channelChatCreated = bot => async msg => {
-  const chatInfo = await bot.getChat(msg.inputMessageData.chat);
-  const members_count = await bot.getChatMembersCount(msg.inputMessageData.chat);
+  const msgData = msg.inputMessageData
+  // const statsData = getStatisticsData(msgData)
   
-  await new Promise.all([
-    API.chat.create({ ...chatInfo, members_count })
-  ]);
+  const chatResponse = await bot.getChat(msgData.chat)
+  const members_count = await bot.getChatMembersCount(msgData.chat)
+  const chat = Transformer.plainToClass(Chat, chatResponse);
+
+  await Promise.all([
+    API.chat.create({ ...chat, members_count }),
+    // API.chat.statistics.updateDaily(statsData)
+  ])
 };
 
 export const addToQueue = () => (msg) => {
