@@ -1,3 +1,3 @@
 [submodule "src/common/datatracker-common-request-models"]
 	path = src/common/datatracker-common-request-models
-	url = https://github.com/ivanodintsov/datatracker-common-request-models.git
+	url = git@github.com:ivanodintsov/datatracker-common-request-models.git
