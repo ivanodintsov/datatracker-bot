@@ -1,6 +1,6 @@
-import MessageEntity from './Message';
-import ChatEntity from './Chat';
-import UserEntity from './User';
+import MessageEntity from '../../common/datatracker-common-request-models/dist/models/Message';
+import ChatEntity from '../../common/datatracker-common-request-models/dist/models/Chat';
+import UserEntity from '../../common/datatracker-common-request-models/dist/models/User';
 
 export const {
   Message,
