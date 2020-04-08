@@ -2,7 +2,7 @@ import { Exclude, Expose, Type } from 'class-transformer';
 import UserPhoto from './UserPhoto';
 
 @Exclude()
-class User {
+export class User {
   @Expose()
   @Type(() => Number)
   id: number;

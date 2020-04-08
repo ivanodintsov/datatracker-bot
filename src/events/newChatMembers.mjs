@@ -5,6 +5,8 @@ import getMessageData from '../helpers/getMessageData';
 import bugsnag from '../services/bugsnag';
 import messageQueue from '../jobs/messagesQueue';
 import TYPES from '../jobs/types';
+import Transformer from 'class-transformer';
+import { Chat, User } from '../bot/models';
 
 const createUser = (bot, chat) => async user => {
   try {
@@ -28,9 +30,10 @@ const createUser = (bot, chat) => async user => {
 };
 
 export const newChatMembers = (bot) => async msg => {
-  const chatInfo = await bot.getChat(msg.chat.id);
-  const myBot = findMyBot(msg.new_chat_members);
-  const msgData = getMessageData(msg);
+  const chatResponse = await bot.getChat(msg.chat.id);
+  const chatInfo = Transformer.plainToClass(Chat, chatResponse);
+  const msgData = msg.inputMessageData;
+  const myBot = findMyBot(msgData.new_chat_members);
   const createChatUser = createUser(bot, msgData.chat);
 
   await API.message.create(msgData);
@@ -42,12 +45,15 @@ export const newChatMembers = (bot) => async msg => {
 
     // Fetch Admins
     const admins = await bot.getChatAdministrators(msgData.chat);
-    const adminsInput = R.map(R.prop('user'), admins);
+    const adminsInput = R.map(R.pipe(
+      R.prop('user'),
+      data => Transformer.plainToClass(User, data),
+    ), admins);
 
     R.forEach(createChatUser, adminsInput);
   }
 
-  R.forEach(createChatUser, msg.new_chat_members);
+  R.forEach(createChatUser, msgData.new_chat_members);
 };
 
 export const addToQueue = () => (msg) => {
