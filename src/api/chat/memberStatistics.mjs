@@ -18,6 +18,9 @@ export default http => async (chatId, userId) => {
           contact
           location
           game
+          reputation {
+            total
+          }
         }
       }`,
       variables: { chatId, userId }
